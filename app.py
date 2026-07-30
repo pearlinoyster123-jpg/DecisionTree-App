@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 
 # Load model
-with open("decision-tree-model.pkl", "rb") as file:
+with open("decision_tree_model.pkl", "rb") as file:
     model = pickle.load(file)
 
 st.set_page_config(
