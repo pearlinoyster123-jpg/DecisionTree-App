@@ -11,7 +11,10 @@ st.set_page_config(
     page_icon="🎓"
 )
 
-st.title("🎓 Student Placement Prediction System")
+st.markdown(
+    "<h2 style='text-align:center; white-space: nowrap;'>🎓 Student Placement Prediction System</h2>",
+    unsafe_allow_html=True
+)
 st.write("Enter the student's details below.")
 
 study_hours = st.number_input("Study Hours", min_value=0.0, max_value=24.0, value=5.0)
