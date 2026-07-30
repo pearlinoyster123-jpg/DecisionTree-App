@@ -10,7 +10,17 @@ st.set_page_config(
     page_title="Student Placement Prediction",
     page_icon="🎓"
 )
+st.sidebar.title("📊 Model Information")
 
+st.sidebar.markdown("---")
+
+st.sidebar.write("**Algorithm:** Decision Tree Classifier")
+st.sidebar.write("**Dataset:** Student Placement Dataset")
+st.sidebar.write("**Accuracy:** 95.00%")
+
+st.sidebar.markdown("---")
+
+st.sidebar.info("Developed by Umme Ahmad")
 st.markdown(
     "<h2 style='text-align:center; white-space: nowrap;'>🎓 Student Placement Prediction System</h2>",
     unsafe_allow_html=True
