@@ -1,22 +1,38 @@
-
 import streamlit as st
-import pickle
 import pandas as pd
+import pickle
 
-# Your complete Streamlit app code goes here
+# Load model
+with open("decision-tree-model.pkl", "rb") as file:
+    model = pickle.load(file)
 
+st.set_page_config(
+    page_title="Student Placement Prediction",
+    page_icon="🎓"
+)
 
-requirements = """
-streamlit
-scikit-learn
-numpy
-"""
+st.title("🎓 Student Placement Prediction System")
+st.write("Enter the student's details below.")
 
-with open("requirements.txt", "w") as f:
-    f.write(requirements)
+study_hours = st.number_input("Study Hours", min_value=0.0, max_value=24.0, value=5.0)
+internet_usage = st.number_input("Internet Usage (hours/day)", min_value=0.0, max_value=24.0, value=4.0)
+assignments_completed = st.number_input("Assignments Completed", min_value=0, value=10)
+previous_score = st.number_input("Previous Score", min_value=0.0, max_value=100.0, value=70.0)
+exam_score = st.number_input("Exam Score", min_value=0.0, max_value=100.0, value=75.0)
 
-print("requirements.txt created successfully!")
-from google.colab import files
+if st.button("Predict Placement"):
 
-files.download("app.py")
-files.download("requirements.txt")
+    input_data = pd.DataFrame({
+        "study_hours": [study_hours],
+        "internet_usage": [internet_usage],
+        "assignments_completed": [assignments_completed],
+        "previous_score": [previous_score],
+        "exam_score": [exam_score]
+    })
+
+    prediction = model.predict(input_data)
+
+    if prediction[0] == 1:
+        st.success("🎉 Student is likely to be Placed.")
+    else:
+        st.error("❌ Student is not likely to be Placed.")
