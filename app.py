@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import pickle
 
-# Load model
+
 with open("decision_tree_model.pkl", "rb") as file:
     model = pickle.load(file)
 
